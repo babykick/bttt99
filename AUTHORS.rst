@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* Stephen Chen <noemail@noemail.com>
+* babykick
 
 Contributors
 ------------
