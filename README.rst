@@ -30,7 +30,7 @@ Features
 
 Usage
 -----
-> pip install bttt99   (not upload yet)
+> pip install bttt99
 
 or
 
