@@ -39,10 +39,6 @@ def get_torrents(url):
 
 
 def copy_to_clipboard(text):
-    # win32clipboard.OpenClipboard()
-    # win32clipboard.EmptyClipboard()
-    # win32clipboard.SetClipboardText(text, win32clipboard.CF_TEXT )
-    # win32clipboard.CloseClipboard()  
     pyperclip.copy(text)
 
 
