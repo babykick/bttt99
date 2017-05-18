@@ -22,7 +22,6 @@ deploy:
     repo: babykick/bttt99
     tags: true
 env:
-- TOXENV=py36
 - TOXENV=py35
 - TOXENV=py34
 - TOXENV=py33
