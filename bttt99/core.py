@@ -5,12 +5,12 @@ import re
 import urllib.parse
 import concurrent.futures
 import itertools
+from collections import namedtuple
 
 import lxml.html
 import requests
 import win32clipboard
 import reprlib
-from collections import namedtuple
 
 BASE_URL = 'http://www.bttt99.com/'
 TAGS_URL = 'http://www.bttt99.com/tag/'
