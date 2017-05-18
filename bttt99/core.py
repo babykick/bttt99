@@ -5,15 +5,13 @@ import re
 import urllib.parse
 import concurrent.futures
 import itertools
+import reprlib
 from collections import namedtuple
 
 import lxml.html
 import requests
-import reprlib
-try:
-    import win32clipboard
-except:
-    pass
+import pyperclip
+ 
 
 BASE_URL = 'http://www.bttt99.com/'
 TAGS_URL = 'http://www.bttt99.com/tag/'
@@ -41,10 +39,11 @@ def get_torrents(url):
 
 
 def copy_to_clipboard(text):
-    win32clipboard.OpenClipboard()
-    win32clipboard.EmptyClipboard()
-    win32clipboard.SetClipboardText(text, win32clipboard.CF_TEXT )
-    win32clipboard.CloseClipboard()  
+    # win32clipboard.OpenClipboard()
+    # win32clipboard.EmptyClipboard()
+    # win32clipboard.SetClipboardText(text, win32clipboard.CF_TEXT )
+    # win32clipboard.CloseClipboard()  
+    pyperclip.copy(text)
 
 
 def grab():

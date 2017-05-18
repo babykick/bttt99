@@ -13,7 +13,7 @@ requirements = [
     'lxml',
     'requests',
     'click',
-    # 'pywin32'
+    'pyperclip'
 ]
 
 test_requirements = [
@@ -22,7 +22,7 @@ test_requirements = [
 
 setup(
     name='bttt99',
-    version='0.1',
+    version='0.2.1',
     description="A tool to navigate movie information.",
     long_description=readme + '\n\n' + history,
     author="Stephen Chen",

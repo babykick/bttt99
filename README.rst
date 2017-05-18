@@ -36,6 +36,6 @@ or
 
 > pip install -e git+https://github.com/babykick/bttt99.git@master#egg=bttt99
 
-> bttt99 美丽心灵
+> bttt99 rounders
 
 
