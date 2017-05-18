@@ -31,7 +31,9 @@ Features
 Usage
 -----
 > pip install bttt99   (not upload yet)
+
 or
+
 > pip install -e git+https://github.com/babykick/bttt99.git@master#egg=bttt99
 
 > bttt99 美丽心灵
