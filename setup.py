@@ -10,9 +10,9 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    lxml,
-    requests,
-    click
+    'lxml',
+    'requests',
+    'click'
 ]
 
 test_requirements = [
