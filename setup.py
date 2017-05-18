@@ -13,7 +13,7 @@ requirements = [
     'lxml',
     'requests',
     'click',
-    'win32clipboard'
+    'pywin32'
 ]
 
 test_requirements = [
