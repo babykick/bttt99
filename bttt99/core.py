@@ -91,7 +91,7 @@ def search(name):
                     print('Copied to clipboard')
                     return torrent
                 else:
-                    print("没有种子")
+                    print("未找到查询的种子")
             except (IndexError, ValueError): 
                 print('Input invalid')
     else:
