@@ -91,7 +91,3 @@ def search(name):
                 print('Input invalid')
     else:
         print('No result')
-
-
-if __name__ == '__main__':
-    search('rounders')
