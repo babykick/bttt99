@@ -23,7 +23,7 @@ test_requirements = [
 setup(
     name='bttt99',
     version='0.1',
-    description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
+    description="A tool to navigate movie information.",
     long_description=readme + '\n\n' + history,
     author="Stephen Chen",
     author_email='noemail@noemail.com',
