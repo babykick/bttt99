@@ -1,6 +1,5 @@
 """
   Grab the torrent from bttt99 website.
-  
 """
 import re
 import urllib.parse
