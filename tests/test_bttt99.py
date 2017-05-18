@@ -14,7 +14,7 @@ import unittest
 from contextlib import contextmanager
 from click.testing import CliRunner
 
-from bttt99 import bttt99
+import bttt99
 from bttt99 import cli
 
 
