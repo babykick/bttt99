@@ -18,7 +18,7 @@ deploy:
       MW9VblBxY2V5RklKWVc2Z0VwV1l6MERNSDhvY2xRNXE0L1RFaEh0cS8zWWVQd1crb0M4UDRjV2FN
       SWROUDFQRGlvN0dNNkI0RFNYamVaZkpzWFZrcHFxUSt0T1E4WFZkL3hXaHhtcXQzek9SaC9DSXM9
   true:
-    condition: $TOXENV == py27
+    condition: $TOXENV == py35
     repo: babykick/bttt99
     tags: true
 env:
