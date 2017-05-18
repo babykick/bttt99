@@ -9,8 +9,11 @@ from collections import namedtuple
 
 import lxml.html
 import requests
-import win32clipboard
 import reprlib
+try:
+    import win32clipboard
+except:
+    pass
 
 BASE_URL = 'http://www.bttt99.com/'
 TAGS_URL = 'http://www.bttt99.com/tag/'
