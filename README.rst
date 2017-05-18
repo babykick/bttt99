@@ -29,3 +29,11 @@ Features
 --------
 
 * Automatecally search the movie information
+
+Usage
+-----
+> pip install bttt99
+
+> bttt99 美丽心灵
+
+
