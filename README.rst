@@ -17,9 +17,7 @@ bttt99
      :target: https://pyup.io/repos/github/babykick/bttt99/
      :alt: Updates
 
-
-Python Boilerplate contains all the boilerplate you need to create a Python package.
-
+A tool to navigate movie information
 
 * Free software: MIT license
 * Documentation: https://bttt99.readthedocs.io.
