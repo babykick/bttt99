@@ -10,8 +10,10 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'Click>=6.0',
-    'requests'
+    'lxml',
+    'requests',
+    'click',
+    'pyperclip'
 ]
 
 test_requirements = [
@@ -20,8 +22,8 @@ test_requirements = [
 
 setup(
     name='bttt99',
-    version='0.1',
-    description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
+    version='0.2.1',
+    description="A tool to navigate movie information.",
     long_description=readme + '\n\n' + history,
     author="Stephen Chen",
     author_email='noemail@noemail.com',

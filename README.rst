@@ -17,9 +17,7 @@ bttt99
      :target: https://pyup.io/repos/github/babykick/bttt99/
      :alt: Updates
 
-
-Python Boilerplate contains all the boilerplate you need to create a Python package.
-
+A tool to navigate movie information
 
 * Free software: MIT license
 * Documentation: https://bttt99.readthedocs.io.
@@ -28,13 +26,16 @@ Python Boilerplate contains all the boilerplate you need to create a Python pack
 Features
 --------
 
-* TODO
+* Automatecally search the movie information
 
-Credits
----------
+Usage
+-----
+> pip install bttt99
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+or
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+> pip install -e git+https://github.com/babykick/bttt99.git@master#egg=bttt99
+
+> bttt99 rounders
+
 
