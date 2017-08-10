@@ -17,7 +17,7 @@ bttt99
      :target: https://pyup.io/repos/github/babykick/bttt99/
      :alt: Updates
 
-Automatecally search the movies and get the magnet links from bttt99.com
+Search movies and fetch the magnet links from bttt99.com.Use text menu to select item. 
 
 * Free software: MIT license
 * Documentation: https://bttt99.readthedocs.io.
@@ -36,3 +36,4 @@ Usage
 .. code:: python
 
     > bttt99 rounders
+
