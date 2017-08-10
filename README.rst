@@ -17,25 +17,22 @@ bttt99
      :target: https://pyup.io/repos/github/babykick/bttt99/
      :alt: Updates
 
-A tool to navigate movie information
+Automatecally search the movies and get the magnet links from bttt99.com
 
 * Free software: MIT license
 * Documentation: https://bttt99.readthedocs.io.
 
 
-Features
---------
+Install
+-------
+.. code:: python
 
-* Automatecally search the movie information
+    > pip install bttt99
+    # or
+    > pip install -e git+https://github.com/babykick/bttt99.git@master#egg=bttt99
 
 Usage
 -----
-> pip install bttt99
+.. code:: python
 
-or
-
-> pip install -e git+https://github.com/babykick/bttt99.git@master#egg=bttt99
-
-> bttt99 rounders
-
-
+    > bttt99 rounders
