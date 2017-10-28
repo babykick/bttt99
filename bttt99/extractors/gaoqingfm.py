@@ -6,6 +6,8 @@ SEARCH_URL = 'https://gaoqing.fm/api/search?search={}&limit=100&page=1'
 
 class Gaoqingfm(BaseExtractor):
     """
+    Grab data by REST api from http://m.gaoqing.fm/
+
     torrents list:
         {'count': '1',
         'films': [{'country': '美国',
