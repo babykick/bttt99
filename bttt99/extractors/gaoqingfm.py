@@ -1,7 +1,7 @@
 from .base import BaseExtractor, Torrent
 
 
-SEARCH_URL = 'https://gaoqing.fm/api/search?search={}&limit=3&page=1'
+SEARCH_URL = 'https://gaoqing.fm/api/search?search={}&limit=100&page=1'
 
 
 class Gaoqingfm(BaseExtractor):
@@ -41,12 +41,14 @@ class Gaoqingfm(BaseExtractor):
         'source': ['BluRay (4)', '1080P (15)', '720P (6)', '标清 (0)', '其他 (0)']}
 
     """
-    def search(self, keyword):
+    def search(self, keyword, resolution='1080p'):
+        rsl = {'1080p': '1080P (15)',
+               'blueray': 'blueray'}
         res = []
         data = self.get_json(SEARCH_URL.format(keyword))
         for item in data['films']:
             hash = item['hash']
-            torrent = self.get_json('https://gaoqing.fm/api/source?hash={}&type=cililian&category=BluRay'.format(hash))          
+            torrent = self.get_json('https://gaoqing.fm/api/source?hash={}&type=cililian&category={}'.format(hash, rsl.get(resolution)))
             torr = Torrent(link=torrent['cililian'], title=item['name'], description=item['info'], rate=item['rate'])
             res.append(torr)
         return res

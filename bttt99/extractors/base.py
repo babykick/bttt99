@@ -28,7 +28,7 @@ class BaseExtractor(object):
     def __init__(self):
         self._session = requests.session()
 
-    def search(self, keyword):
+    def search(self, keyword, resolution):
         raise NotImplementedError
     
     def fetch_torrents(self, keyword):
