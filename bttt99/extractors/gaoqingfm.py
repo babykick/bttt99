@@ -44,15 +44,25 @@ class Gaoqingfm(BaseExtractor):
 
     """
     def search(self, keyword, resolution='1080p'):
-        rsl = {'1080p': '1080P (15)',
-               'blueray': 'blueray'}
+        rsl = {'1080p': '1080P (0)',
+               'blueray': 'BluRay (0)', 
+               '720p': '720P (0)', 
+               'standard': '标清 (1)', 
+               'other': '其他 (0)'
+               }
         res = []
         data = self.get_json(SEARCH_URL.format(keyword))
-        for item in data['films']:
-            hash = item['hash']
-            torrent = self.get_json('https://gaoqing.fm/api/source?hash={}&type=cililian&category={}'.format(hash, rsl.get(resolution)))
-            for mag in torrent['cililian']:
-                magnet = 'magnet:?xt=urn:btih:{}'.format(mag['magnet'])
-                torr = Torrent(magnet=magnet, title=item['name'], size=mag['size'], resolution=torrent['selected'], description=item['info'], rate=item['rate'])
-                res.append(torr)
+        if 'films' in data and data['films']:
+            for item in data['films']:
+                hash = item['hash']
+                detail = self.get_json('https://gaoqing.fm/api/source?hash={}&type=cililian&category={}'.format(hash, rsl.get(resolution)))
+                for mag in detail['cililian']:
+                    magnet = 'magnet:?xt=urn:btih:{}'.format(mag['magnet'])
+                    torr = Torrent(magnet=magnet, title=item['name'], date=item['fupdate'], size=mag['size'], resolution=detail['selected'], description=item['info'], rate=item['rate'])
+                    res.append(torr)
+        else:
+            print('in')
+            for source in data['source']:
+                if int(source.split()[-1][1]) > 1:
+                    return search(self, keyword, resolution=source)
         return res

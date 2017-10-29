@@ -21,7 +21,7 @@ torrents_re = re.compile('<a href="(.*?)" title=".*?" target="_self">(.*?)</a>')
 session = requests.Session()
 session.headers.update({'user-agent': UA})
 
-Torrent = namedtuple('Torrent', 'magnet size resolution title description rate')
+Torrent = namedtuple('Torrent', 'magnet size resolution title date description rate')
 
 
 class BaseExtractor(object):
@@ -70,9 +70,10 @@ class BaseExtractor(object):
     def show_torrents(self, torrents):
         if torrents:
             for i, tor in enumerate(torrents, 1):
-                print('\n{}: {}\n{}'.format(i, tor.magnet, tor.size))
-            print('简介:', torrents[0].description)
-            print('Rate: ', torrents[0].rate)
+                print(i, tor.title, tor.date, tor.size, tor.rate)
+                print('{}'.format(tor.magnet))
+                
+            # print('简介:', tor.description)
             which = int(input('Which one?'))
             torrent = torrents[which - 1]
             copy_to_clipboard(torrent.magnet)
