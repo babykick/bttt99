@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import click
 
 from .core import search
+
 
 @click.command()
 @click.argument('moviename')

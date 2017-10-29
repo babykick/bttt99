@@ -7,7 +7,8 @@ from collections import namedtuple
 
 import lxml.html
 import requests
-import pyperclip
+
+from .common import copy_to_clipboard
 
 
 BASE_URL = 'http://www.bttt99.com/'
@@ -20,7 +21,7 @@ torrents_re = re.compile('<a href="(.*?)" title=".*?" target="_self">(.*?)</a>')
 session = requests.Session()
 session.headers.update({'user-agent': UA})
 
-Torrent = namedtuple('Torrent', 'link title description rate')
+Torrent = namedtuple('Torrent', 'magnet size resolution title description rate')
 
 
 class BaseExtractor(object):
@@ -31,7 +32,7 @@ class BaseExtractor(object):
     def search(self, keyword, resolution):
         raise NotImplementedError
     
-    def fetch_torrents(self, keyword):
+    def fetch(self, keyword):
         self.show_torrents(self.search(keyword))
 
     def get_json(self, url):
@@ -51,11 +52,6 @@ class BaseExtractor(object):
             rate = doc.xpath('//span[@class="rate"]')[0].text_content()
             yield Torrent(link=link, title=title, description=description, rate=rate)
 
-
-    def copy_to_clipboard(self, text):
-        pyperclip.copy(text)
-
-
     def grab(self):
         r = session.get(BASE_URL)
         futures = []
@@ -71,19 +67,16 @@ class BaseExtractor(object):
                     result = fu.result()
                     print(result)
 
-
     def show_torrents(self, torrents):
         if torrents:
             for i, tor in enumerate(torrents, 1):
-                print('\n{}: {}\n{}'.format(i, tor.link, tor.title))
+                print('\n{}: {}\n{}'.format(i, tor.magnet, tor.title))
             print('简介:', torrents[0].description)
             print('Rate: ', torrents[0].rate)
             which = int(input('Which one?'))
             torrent = torrents[which - 1]
-            copy_to_clipboard(torrent.link)
+            copy_to_clipboard(torrent.magnet)
             print('Copied to clipboard')
             return torrent
         else:
             print("未找到查询的种子")
-
-

@@ -51,6 +51,8 @@ class Gaoqingfm(BaseExtractor):
         for item in data['films']:
             hash = item['hash']
             torrent = self.get_json('https://gaoqing.fm/api/source?hash={}&type=cililian&category={}'.format(hash, rsl.get(resolution)))
-            torr = Torrent(link=torrent['cililian'], title=item['name'], description=item['info'], rate=item['rate'])
-            res.append(torr)
+            for mag in torrent['cililian']:
+                magnet = 'magnet:?xt=urn:btih:{}'.format(mag['magnet'])
+                torr = Torrent(magnet=magnet, title=item['name'], size=mag['size'], resolution=torrent['selected'], description=item['info'], rate=item['rate'])
+                res.append(torr)
         return res
