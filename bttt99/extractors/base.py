@@ -70,7 +70,7 @@ class BaseExtractor(object):
     def show_torrents(self, torrents):
         if torrents:
             for i, tor in enumerate(torrents, 1):
-                print('\n{}: {}\n{}'.format(i, tor.magnet, tor.title))
+                print('\n{}: {}\n{}'.format(i, tor.magnet, tor.size))
             print('简介:', torrents[0].description)
             print('Rate: ', torrents[0].rate)
             which = int(input('Which one?'))
