@@ -8,7 +8,7 @@ from collections import namedtuple
 import lxml.html
 import requests
 
-from .common import copy_to_clipboard
+from ..common import copy_to_clipboard
 
 
 BASE_URL = 'http://www.bttt99.com/'
