@@ -1,7 +1,7 @@
 import click
 
-from .core import search, find_subtitle
-from .common import copy_to_clipboard
+from .core import search
+from .common import copy_to_clipboard, find_subtitle
 
 
 @click.command()

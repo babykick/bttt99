@@ -1,4 +1,5 @@
 import re
+import os
 import urllib.parse
 import concurrent.futures
 import itertools
@@ -8,7 +9,7 @@ from collections import namedtuple
 import lxml.html
 import requests
 
-from ..common import copy_to_clipboard
+from ..common import copy_to_clipboard, find_subtitle
 
 
 BASE_URL = 'http://www.bttt99.com/'
@@ -21,7 +22,7 @@ torrents_re = re.compile('<a href="(.*?)" title=".*?" target="_self">(.*?)</a>')
 session = requests.Session()
 session.headers.update({'user-agent': UA})
 
-Torrent = namedtuple('Torrent', 'magnet size resolution title date description rate')
+Torrent = namedtuple('Torrent', 'name magnet size resolution title date description rate')
 
 
 class BaseExtractor(object):
@@ -70,14 +71,22 @@ class BaseExtractor(object):
     def show_torrents(self, torrents):
         if torrents:
             for i, tor in enumerate(torrents, 1):
-                print(i, tor.title, tor.date, tor.size, tor.rate)
-                print('{}'.format(tor.magnet))
-                
+                print(i, tor.title, tor.date, tor.rate)
+                print(tor.name, tor.size)
+                print(tor.magnet)
+                print()
+
             # print('简介:', tor.description)
             which = int(input('Which one?'))
             torrent = torrents[which - 1]
             copy_to_clipboard(torrent.magnet)
             print('Copied to clipboard')
+            yes = input('Download the subtitle?(y/n)')
+            if yes.lower() == 'y':
+                link = find_subtitle(torrent.name)
+                print(link)
+                with open(os.path.join(os.path.expanduser('~'), 'Desktop', link.rsplit('/', 1)[-1]), 'wb') as f:
+                    f.write(session.get(link).content)
             return torrent
         else:
             print("未找到查询的种子")

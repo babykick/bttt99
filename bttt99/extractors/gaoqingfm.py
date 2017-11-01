@@ -1,3 +1,5 @@
+import lxml.html as H
+
 from .base import BaseExtractor, Torrent
 
 
@@ -55,14 +57,34 @@ class Gaoqingfm(BaseExtractor):
         if 'films' in data and data['films']:
             for item in data['films']:
                 hash = item['hash']
-                detail = self.get_json('https://gaoqing.fm/api/source?hash={}&type=cililian&category={}'.format(hash, rsl.get(resolution)))
+                detail = self._get_detail_from_html(hash)
                 for mag in detail['cililian']:
-                    magnet = 'magnet:?xt=urn:btih:{}'.format(mag['magnet'])
-                    torr = Torrent(magnet=magnet, title=item['name'], date=item['fupdate'], size=mag['size'], resolution=detail['selected'], description=item['info'], rate=item['rate'])
+                    magnet = 'magnet:?xt=urn:btih:{}'.format(mag['magnet']) if 'magnet:' not in mag['magnet'] else mag['magnet']
+                    torr = Torrent(name=mag['name'], magnet=magnet, title=item['name'], 
+                                   date=item['fupdate'], size=mag['size'], resolution=detail.get('selected') or mag['resolution'], 
+                                   description=item['info'], rate=item['rate'])
                     res.append(torr)
         else:
-            print('in')
             for source in data['source']:
                 if int(source.split()[-1][1]) > 1:
                     return search(self, keyword, resolution=source)
         return res
+
+    def _get_detail_from_api(self, hash, resolution):
+        detail = self.get_json('https://gaoqing.fm/api/source?hash={}&type=cililian&category={}'.format(hash, rsl.get(resolution)))
+        return detail
+
+    def _get_detail_from_html(self, hash):
+        result = {}
+        result['cililian'] = []
+        html = self.get_html('https://gaoqing.fm/view/{}'.format(hash))
+        doc = H.fromstring(html)
+        for row in doc.xpath('//table[@id="cili"]/tr/td')[:-2]:
+            item = {}
+            item['name'] = row.xpath('./b/text()')[0]
+            spans = row.xpath('./span/span')
+            item['size'] = spans[0].text
+            item['resolution'] = spans[1].text
+            item['magnet'] = spans[2].xpath('a')[1].get('href')
+            result['cililian'].append(item)
+        return result
