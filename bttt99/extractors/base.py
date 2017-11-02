@@ -83,13 +83,13 @@ class BaseExtractor(object):
             print('Copied to clipboard')
             yes = input('Download the subtitle?(y/n)')
             if yes.lower() == 'y':
-                link = find_subtitle(torrent.name)
-                if link:
-                    print(link)
-                    with open(os.path.join(os.path.expanduser('~'), 'Desktop', link.rsplit('/', 1)[-1]), 'wb') as f:
-                        f.write(session.get(link).content)
-                else:
-                    print('No matched subtitle found')
+                link = find_subtitle(torrent.name) or find_subtitle(torrent.title)
+            if link:
+                print(link)
+                with open(os.path.join(os.path.expanduser('~'), 'Desktop', link.rsplit('/', 1)[-1]), 'wb') as f:
+                    f.write(session.get(link).content)
+            else:
+                print('No matched subtitle found')
             return torrent
         else:
             print("未找到查询的种子")
